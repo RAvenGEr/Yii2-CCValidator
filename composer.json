@@ -3,7 +3,7 @@
     "description": "Credit Card validation extension for Yii2 framework",
     "keywords": ["yii2", "credit card", "validation", "validator"],
     "type": "yii2-extension",
-	"version": "1.0.0",
+	"version": "1.0.1",
     "license": "BSD",
     "support": {
         "issues": "https://github.com/RAvenGEr/Yii2-CCValidator/issues",

@@ -27,18 +27,18 @@ class CCValidator extends Validator {
      * @param $attribute the credit card number attribute of $model.
      */
     public function validateAttribute($model, $attribute) {
-        $type = str_replace(' ', '', strtolower($this->cardType));
+        $type = str_replace(' ', '', strtolower($model->cardType));
         $result = false;
         try {
             if (CreditCard::validCreditCard($model->$attribute, $type)['valid']
                     == true) {
                 $result = false;
-            } else if (CreditCard::validDate($this->cardExpiryYear, 
-                    $this->cardExpiryMonth) == false) {
+            } else if (CreditCard::validDate($model->cardExpiryYear, 
+                    $model->cardExpiryMonth) == false) {
                 $model->addError('cardExpiryYear', 'Validation failure.');
                 $model->addError('cardExpiryMonth', 'Validation failure.');
                 $result = false;
-            } else if (CreditCard::validCvc($this->cvc, $type) === false) {
+            } else if (CreditCard::validCvc($model->cvc, $type) === false) {
                 $model->addError('cvc', 'Validation failure.');
                 $result = false;
             } else {
