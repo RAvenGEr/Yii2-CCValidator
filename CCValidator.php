@@ -28,10 +28,13 @@ class CCValidator extends Validator {
      */
     public function validateAttribute($model, $attribute) {
         $type = str_replace(' ', '', strtolower($model->cardType));
+        if ($type == 'master') {
+            $type = 'mastercard';
+        }
         $result = false;
         try {
             if (CreditCard::validCreditCard($model->$attribute, $type)['valid']
-                    == true) {
+                    == false) {
                 $result = false;
             } else if (CreditCard::validDate($model->cardExpiryYear, 
                     $model->cardExpiryMonth) == false) {
